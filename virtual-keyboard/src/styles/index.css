@@ -863,4 +863,160 @@ h5 {
 .footer__rss a:hover {
   color: #ffffff;
 }
+
+.keyboard__wrapper {
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  gap: 50px;
+}
+
+.keyboard__textarea {
+  height: 300px;
+  padding: 20px;
+  resize: none;
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.65rem;
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+  background: transparent;
+  -webkit-transition: border 0.3s ease-in-out;
+  transition: border 0.3s ease-in-out;
+}
+
+.keyboard__textarea:focus {
+  outline: none;
+  border: 3px solid #5fc0ff;
+}
+
+.keyboard__note {
+  padding: 5px;
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.65rem;
+}
+
+.keyboard__container {
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[15];
+      grid-template-columns: repeat(15, 1fr);
+  -ms-grid-rows: (1fr)[5];
+      grid-template-rows: repeat(5, 1fr);
+  gap: 10px;
+  width: 900px;
+  height: 300px;
+  padding: 10px;
+  background: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 10px;
+}
+
+.keyboard__container::before, .keyboard__container::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  border-radius: 10px;
+  width: calc(100% + 3px);
+  height: calc(100% + 3px);
+  top: -1.5px;
+  left: -1.5px;
+  background: linear-gradient(45deg, #fc0090, #0000ff, #00ff00, #ff0000, #ffff00, #fc0090, #0000ff, #00ff00, #ff0000, #ffff00);
+  background-size: 400%;
+  -webkit-animation: border 25s linear infinite;
+          animation: border 25s linear infinite;
+}
+
+.keyboard__container::after {
+  -webkit-filter: blur(150px);
+          filter: blur(150px);
+}
+
+.key {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 2.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.65rem;
+  border-radius: 5px;
+  background: #5fc0ff;
+  cursor: pointer;
+  -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, -webkit-transform 0.1s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, -webkit-transform 0.1s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.1s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.1s ease-in-out, -webkit-transform 0.1s ease-in-out;
+}
+
+.key:hover {
+  color: #ffffff;
+  background: #0f4387;
+}
+
+.key:active {
+  color: #ffffff;
+  background: #0c2f5f;
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+}
+
+.key-special {
+  grid-column: span 2;
+}
+
+.key-special:active {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.key-unique {
+  grid-column: span 7;
+}
+
+.key-unique:active {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+}
+
+@-webkit-keyframes border {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400%;
+  }
+}
+
+@keyframes border {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400%;
+  }
+}
+
+@-webkit-keyframes swap {}
+
+@keyframes swap {}@-webkit-keyframes shift {}@keyframes shift {}
 /*# sourceMappingURL=index.css.map */
