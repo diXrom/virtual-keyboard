@@ -1,0 +1,13 @@
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  &__title {
+    margin: 0 0 10px;
+    color: $color-light;
+  }
+  &__subtitle {
+    color: $color-dark;
+  }
+}

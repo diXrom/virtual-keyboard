@@ -1,0 +1,72 @@
+html,
+body {
+  font-size: 10px;
+  /* @include media-tabletsmall {
+    overflow-x: hidden;
+    position: relative;
+  } */
+}
+
+body {
+  @extend %font-prim;
+  @include font($size: 1.5rem, $height: 2.6rem);
+
+  display: grid;
+  grid-template-rows: 100px 1fr auto;
+  grid-template-columns: 100%;
+  min-height: 100vh;
+  gap: 40px;
+
+  background: linear-gradient(
+    90deg,
+    $color-dark 0%,
+    $color-add 40%,
+    $color-prim 80%
+  );
+}
+
+h1 {
+  @extend %font-add;
+  @include font($size: 3.2rem, $height: 3.52rem);
+  color: $color-prim;
+  letter-spacing: 0.06em;
+}
+
+h2 {
+  @extend %font-add;
+  @include font($size: 4.4rem, $height: 5.72rem);
+  color: $color-light;
+  @include media-mobile {
+    @include font($size: 2.5rem, $height: 3.25rem);
+    letter-spacing: 0.06em;
+  }
+}
+
+h3 {
+  @extend %font-add;
+  @include font($size: 3.5rem, $height: 4.55rem);
+  letter-spacing: 0.06em;
+  color: $color-dark-l;
+  @include media-mobile {
+    @include font($size: 2.5rem, $height: 3.25rem);
+  }
+}
+
+h4 {
+  @extend %font-add;
+  @include font($size: 2rem, $height: 2.3rem);
+  letter-spacing: 0.06em;
+  color: $color-dark-l;
+}
+
+h5 {
+  @extend %font-add;
+  @include font($size: 1.5rem, $height: 1.65rem);
+  letter-spacing: 0.06em;
+  color: $color-dark-l;
+}
+
+.block-shadowed {
+  box-shadow: 0 0 10px $color-dark-l;
+/*   border-radius: 9px; */
+}
