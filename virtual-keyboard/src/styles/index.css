@@ -659,11 +659,19 @@ h5 {
 
 .logo__title {
   margin: 0 0 10px;
+  color: #000000;
+}
+
+.logo__title span {
   color: #ffffff;
 }
 
 .logo__subtitle {
   color: #000000;
+}
+
+.logo__subtitle span {
+  color: #ffffff;
 }
 
 .overlay,
@@ -884,7 +892,7 @@ h5 {
   font-size: 2.5rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.65rem;
+  line-height: 2.5rem;
   border: 3px solid #ffffff;
   border-radius: 10px;
   background: transparent;
@@ -906,6 +914,10 @@ h5 {
   line-height: 1.65rem;
 }
 
+.keyboard__note span {
+  color: #000000;
+}
+
 .keyboard__container {
   position: relative;
   display: -ms-grid;
@@ -918,9 +930,13 @@ h5 {
   width: 900px;
   height: 300px;
   padding: 10px;
-  background: #ffffff;
-  border: 3px solid #000000;
+  background: #1e8cd2;
+  border: 3px solid #ffffff;
   border-radius: 10px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .keyboard__container::before, .keyboard__container::after {
@@ -933,14 +949,14 @@ h5 {
   top: -1.5px;
   left: -1.5px;
   background: linear-gradient(45deg, #fc0090, #0000ff, #00ff00, #ff0000, #ffff00, #fc0090, #0000ff, #00ff00, #ff0000, #ffff00);
-  background-size: 400%;
-  -webkit-animation: border 25s linear infinite;
-          animation: border 25s linear infinite;
+  background-size: 300%;
+  -webkit-animation: border 20s linear infinite;
+          animation: border 20s linear infinite;
 }
 
 .keyboard__container::after {
-  -webkit-filter: blur(150px);
-          filter: blur(150px);
+  -webkit-filter: blur(50px);
+          filter: blur(50px);
 }
 
 .key {
@@ -953,17 +969,17 @@ h5 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 700;
   line-height: 1.65rem;
   border-radius: 5px;
   background: #5fc0ff;
   cursor: pointer;
-  -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, -webkit-transform 0.1s ease-in-out;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, -webkit-transform 0.1s ease-in-out;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.1s ease-in-out;
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.1s ease-in-out, -webkit-transform 0.1s ease-in-out;
+  -webkit-box-shadow: 3px 2px 0px 2px #0000004d;
+          box-shadow: 3px 2px 0px 2px #0000004d;
+  -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 .key:hover {
@@ -978,6 +994,14 @@ h5 {
           transform: scale(1.15);
 }
 
+.key.active {
+  color: #ffffff;
+  font-size: 2.5rem;
+  background: #0c2f5f;
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+}
+
 .key-special {
   grid-column: span 2;
 }
@@ -987,11 +1011,26 @@ h5 {
           transform: scale(1.1);
 }
 
+.key-special.active {
+  color: #ffffff;
+  font-size: 2.1rem;
+  background: #0c2f5f;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
 .key-unique {
   grid-column: span 7;
 }
 
 .key-unique:active {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+}
+
+.key-unique.active {
+  color: #ffffff;
+  background: #0c2f5f;
   -webkit-transform: scale(1.03);
           transform: scale(1.03);
 }
@@ -1015,8 +1054,4 @@ h5 {
     background-position: 400%;
   }
 }
-
-@-webkit-keyframes swap {}
-
-@keyframes swap {}@-webkit-keyframes shift {}@keyframes shift {}
 /*# sourceMappingURL=index.css.map */
