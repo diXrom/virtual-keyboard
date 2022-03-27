@@ -1,0 +1,24 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": "airbnb-base/legacy",
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-unused-vars": ["warn", { "caughtErrorsIgnorePattern": "^ignore" }],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ]
+    }
+}

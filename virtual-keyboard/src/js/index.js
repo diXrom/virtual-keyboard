@@ -1,3 +1,4 @@
+import '../styles/index.scss';
 import Header from './components/ElemHeader.js';
 import Main from './components/ElemMain.js';
 import Footer from './components/ElemFooter.js';
