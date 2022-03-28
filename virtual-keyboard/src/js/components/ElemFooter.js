@@ -1,10 +1,11 @@
 export default class Footer {
-    constructor() {
-        this.footer = document.createElement('footer')
-    }
-    render() {
-        this.footer.classList.add("footer", "block-shadowed");
-        this.footer.innerHTML = `
+  constructor() {
+    this.footer = document.createElement('footer');
+  }
+
+  render() {
+    this.footer.classList.add('footer', 'block-shadowed');
+    this.footer.innerHTML = `
         <div class="wrapper">
             <div class="footer__content layout-2-column">
                 <div class="footer__copy">
@@ -14,7 +15,7 @@ export default class Footer {
                 <a href="https://rs.school/js-stage0/" target="_blank">Rolling Scopes School</a>
                 </div>
             </div>
-        </div>`
-        return this.footer;
-    }
+        </div>`;
+    return this.footer;
+  }
 }

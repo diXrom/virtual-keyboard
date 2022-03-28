@@ -4,14 +4,14 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 let mode = 'development'
 if (process.env.NODE_ENV === 'production') mode = 'production'
 /* let mode = process.env.NODE_ENV === 'production' ? 'production' : 'development' */
-const jsLoaders = () => {
+/* const jsLoaders = () => {
     const loaders = [{
         loader: 'babel-loader',
         options: { presets: ['@babel/preset-env'] }
     }]
     if (mode == 'development') loaders.push('eslint-loader')
     return loaders
-}
+} */
 module.exports = {
     mode: mode,
     entry: {
@@ -84,7 +84,10 @@ module.exports = {
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
-                use: jsLoaders()
+                use: {
+                    loader: 'babel-loader',
+                    options: { presets: ['@babel/preset-env'] }
+                }
             }
         ]
     },
