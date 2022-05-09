@@ -44,8 +44,9 @@
   padding: 10px;
 
   background: $color-prim-dark;
-  border: 3px solid $color-light;
+  border: 3px solid $color-prim;
   border-radius: 10px;
+  box-shadow: 5px 5px 5px 5px rgb(0 0 0 / 50%);
   user-select: none;
 
   &::before,

@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": "airbnb",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -13,9 +13,6 @@
   },
   "plugins": ["react"],
   "rules": {
-    "no-unused-vars": "warn",
-    "no-param-reassign": "warn",
-    "no-plusplus": "warn",
     "max-len": ["error", 150, { "ignoreUrls": true }]
   },
   "settings": {

@@ -1,6 +1,3 @@
-/* eslint no-param-reassign: "off" */
-/* eslint no-return-assign: "off" */
-/* eslint class-methods-use-this: "off" */
 import Key from './Key';
 
 export default class Keyboard {
@@ -44,7 +41,7 @@ export default class Keyboard {
     this.langShift = this.keysShift;
   }
 
-  createKey(key, data) {
+  static createKey(key, data) {
     let mod = '';
     if (key === '← ' || key.length > 4) mod = 'key-special';
     if (key === 'Space') mod = 'key-unique';
@@ -61,7 +58,10 @@ export default class Keyboard {
     if (!e.altKey || !e.ctrlKey) return;
     if (localStorage.getItem('lang') === 'ru') this.localStorageCheck('en');
     else this.localStorageCheck('ru');
-    document.querySelectorAll('.key').forEach((key, i) => [key.innerHTML, key.dataset.shift] = [this.lang[i], this.langShift[i]]);
+    document.querySelectorAll('.key').forEach((key, i) => {
+      const tmp = key;
+      [tmp.innerHTML, tmp.dataset.shift] = [this.lang[i], this.langShift[i]];
+    });
   }
 
   render() {
@@ -69,7 +69,7 @@ export default class Keyboard {
     keyboard.classList.add('keyboard__container');
     document.documentElement.addEventListener('keydown', this.languageSelection.bind(this));
     this.localStorageCheck(localStorage.getItem('lang'));
-    this.lang.forEach((key, i) => keyboard.append(this.createKey(key, this.keysData[i], this.langShift[i])));
+    this.lang.forEach((key, i) => keyboard.append(Keyboard.createKey(key, this.keysData[i], this.langShift[i])));
     return keyboard;
   }
 }

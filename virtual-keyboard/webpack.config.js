@@ -1,17 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development'
 
-let mode = 'development'
-if (process.env.NODE_ENV === 'production') mode = 'production'
-/* let mode = process.env.NODE_ENV === 'production' ? 'production' : 'development' */
-/* const jsLoaders = () => {
-    const loaders = [{
-        loader: 'babel-loader',
-        options: { presets: ['@babel/preset-env'] }
-    }]
-    if (mode == 'development') loaders.push('eslint-loader')
-    return loaders
-} */
 module.exports = {
     mode: mode,
     entry: {

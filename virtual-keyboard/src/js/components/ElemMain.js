@@ -1,6 +1,3 @@
-/* eslint no-shadow: "off" */
-/* eslint no-param-reassign: "off" */
-/* eslint no-return-assign: "off" */
 import Keyboard from './Keyboard';
 
 export default class Main {
@@ -17,12 +14,16 @@ export default class Main {
 
   changeCase(reg) {
     if (reg === 'Low') {
-      this.keys.forEach((key) => /[^A-ZА-ЯЁ]/.test(key.innerHTML)
-        || (key.innerHTML = key.innerHTML.toLowerCase()));
+      this.keys.forEach((key) => {
+        const tmp = key;
+        if (!/[^A-ZА-ЯЁ]/.test(tmp.innerHTML)) tmp.innerHTML = tmp.innerHTML.toLowerCase();
+      });
     }
     if (reg === 'Up') {
-      this.keys.forEach((key) => /[^a-zа-яё]/.test(key.innerHTML)
-        || (key.innerHTML = key.innerHTML.toUpperCase()));
+      this.keys.forEach((key) => {
+        const tmp = key;
+        if (!/[^a-zа-яё]/.test(tmp.innerHTML)) tmp.innerHTML = tmp.innerHTML.toUpperCase();
+      });
     }
   }
 
@@ -44,13 +45,16 @@ export default class Main {
       area.setSelectionRange(pos, pos);
     }
     if (key === 'Tab') {
-      area.value = `${left}\t${right.slice(1)}`;
+      area.value = `${left}\t${right}`;
       area.setSelectionRange(pos + 1, pos + 1);
     }
     if (key === 'Shift') {
       if (this.keyboard.closest('.Shift')) return;
       this.arrays.localStorageCheck(localStorage.getItem('lang'));
-      this.keys.forEach((key, i) => key.innerHTML = this.arrays.langShift[i]);
+      this.keys.forEach((item, i) => {
+        const tmp = item;
+        tmp.innerHTML = this.arrays.langShift[i];
+      });
       if (this.keyboard.closest('.CapsLock')) this.changeCase('Low');
       this.keyboard.classList.add('Shift');
     }
@@ -65,7 +69,7 @@ export default class Main {
       this.changeCase('Low');
     }
     if (key === 'Enter') {
-      area.value = `${left}\n${right.slice(1)}`;
+      area.value = `${left}\n${right}`;
       area.setSelectionRange(pos + 1, pos + 1);
     }
     if (key === 'Space') {
@@ -79,9 +83,12 @@ export default class Main {
 
   eventUpHandler(e) {
     const key = e.target.innerHTML;
-    document.querySelectorAll('.key').forEach((key) => key.classList.remove('active'));
+    document.querySelectorAll('.key').forEach((item) => item.classList.remove('active'));
     if (key === 'Shift') {
-      this.keys.forEach((key, i) => key.innerHTML = this.arrays.lang[i]);
+      this.keys.forEach((item, i) => {
+        const tmp = item;
+        tmp.innerHTML = this.arrays.lang[i];
+      });
       this.keyboard.classList.remove('Shift');
     }
     if (key === 'CapsLock') this.caps = false;
@@ -108,6 +115,7 @@ export default class Main {
   init() {
     this.keyboard.addEventListener('mousedown', this.eventDownHandler.bind(this));
     this.keyboard.addEventListener('mouseup', this.eventUpHandler.bind(this));
+    this.keyboard.addEventListener('click', () => this.textarea.focus());
     document.documentElement.addEventListener('keydown', (e) => this.keyHandler(e, 'mousedown'));
     document.documentElement.addEventListener('keyup', (e) => {
       this.keyHandler(e, 'mouseup');
