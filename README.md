@@ -1,2 +1,2 @@
-# dixrom-JSFE2022Q1
-Private repository for @dixrom
+- A virtual keyboard is software that is used to emulate a standard keyboard.
+- Link:https://dixrom.github.io/virtual-keyboard/
