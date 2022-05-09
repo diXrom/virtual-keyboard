@@ -1,0 +1,1 @@
+import"../styles/index.scss";import Header from"./components/ElemHeader";import Main from"./components/ElemMain";import Footer from"./components/ElemFooter";var header=(new Header).render(),main=(new Main).render(),footer=(new Footer).render();document.body.append(header,main,footer);
