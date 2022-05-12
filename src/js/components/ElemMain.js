@@ -27,23 +27,41 @@ export default class Main {
     }
   }
 
+  deleteСharactersAfter(start, end) {
+    if (start === end) this.textarea.setRangeText('', start, start + 1, 'end');
+    else this.textarea.setRangeText('', start, end, 'end');
+  }
+
+  deleteСharactersBefore(start, end) {
+    if (start === 0 && end === 0) return;
+    if (start === end) this.textarea.setRangeText('', start - 1, start, 'end');
+    else this.textarea.setRangeText('', start, end, 'end');
+  }
+
+  static getLengthRows(rows, symbNum) {
+    const newRows = rows.reduce((acc, el) => {
+      if (el.length > symbNum) {
+        for (let i = 0; i < el.length; i += symbNum) {
+          acc.push(el.slice(i, i + symbNum - 1));
+        }
+      } else acc.push(el);
+      return acc;
+    }, []);
+    return newRows;
+  }
+
   eventDownHandler(e) {
     if (!e.target.closest('.key')) return;
     this.textarea.focus();
     const area = this.textarea;
     const pos = area.selectionStart;
+    const posEnd = area.selectionEnd;
     const left = area.value.slice(0, pos);
     const right = area.value.slice(pos);
     const key = e.target.innerHTML;
     e.target.classList.add('active');
-    if (key === '← ') {
-      area.value = `${left.slice(0, left.length - 1)}${right}`;
-      area.setSelectionRange(pos - 1, pos - 1);
-    }
-    if (key === 'Del') {
-      area.value = `${left}${right.slice(1)}`;
-      area.setSelectionRange(pos, pos);
-    }
+    if (key === '← ') this.deleteСharactersBefore(pos, posEnd);
+    if (key === 'Del') this.deleteСharactersAfter(pos, posEnd);
     if (key === 'Tab') {
       area.value = `${left}\t${right}`;
       area.setSelectionRange(pos + 1, pos + 1);
@@ -76,6 +94,56 @@ export default class Main {
       area.value = `${left} ${right}`;
       area.setSelectionRange(pos + 1, pos + 1);
     }
+    if (key === '►') {
+      area.setSelectionRange(pos + 1, pos + 1);
+    }
+    if (key === '◄' && pos > 0) {
+      area.setSelectionRange(pos - 1, pos - 1);
+    }
+    if (key === '▲') {
+      let strLength = 0;
+      const symbNum = Math.round((area.clientWidth - 40) / 8.783);
+      let rows = area.value.slice(0, area.selectionStart).split('\n');
+      rows = Main.getLengthRows(rows, symbNum);
+      if (rows.length === 1 && rows[0].length === symbNum) {
+        rows.push('');
+        strLength = 1;
+      }
+      if (rows.length < 2) return;
+      const currentRowLength = rows[rows.length - 1].length;
+      const targetRowLength = rows[rows.length - 2].length;
+
+      area.selectionStart = currentRowLength < targetRowLength
+        ? pos - (targetRowLength) - 1 + strLength
+        : pos - (currentRowLength) - 1 + strLength;
+      area.selectionEnd = area.selectionStart;
+    }
+    if (key === '▼') {
+      const symbNum = Math.round((area.clientWidth - 40) / 8.783);
+      let rows = area.value.slice(0, area.selectionStart).split('\n');
+      rows = Main.getLengthRows(rows, symbNum);
+      const currentRowLength = rows[rows.length - 1].length;
+
+      rows = area.value.slice(area.selectionStart, area.value.length).split('\n');
+      let strLength = 0;
+      if (rows[0].length > symbNum - currentRowLength) {
+        const firstRow = rows[0].slice(0, symbNum - currentRowLength);
+        rows[0] = rows[0].slice(symbNum - currentRowLength, rows[0].length);
+        rows.unshift(firstRow);
+        strLength = -1;
+      }
+
+      rows = Main.getLengthRows(rows, symbNum);
+      if (rows.length < 2) return;
+      const restCurRowLength = rows[0].length;
+      const targetRowLength = rows[1].length;
+
+      area.selectionStart = currentRowLength > targetRowLength
+        ? area.selectionStart + (targetRowLength + restCurRowLength) + 1 + strLength
+        : area.selectionStart + (restCurRowLength + currentRowLength) + 1 + strLength;
+      area.selectionEnd = area.selectionStart;
+    }
+    if (['▲', '▼', '◄', '►'].some((item) => item === key)) return;
     if (key.length > 1) return;
     area.value = `${left}${key}${right}`;
     area.setSelectionRange(pos + 1, pos + 1);
