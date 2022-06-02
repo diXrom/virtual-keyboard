@@ -1,0 +1,145 @@
+.keyboard__wrapper {
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 50px;
+}
+.keyboard__textarea {
+  height: 300px;
+  padding: 20px;
+  resize: none;
+
+  color: $color-light;
+  @include font($size: 2.5rem, $height: 2.5rem);
+
+  border: 3px solid $color-light;
+  border-radius: 10px;
+  background: transparent;
+
+  transition: border 0.3s ease-in-out;
+  &:focus {
+    outline: none;
+    border: 3px solid $color-prim;
+  }
+}
+.keyboard__note {
+  padding: 5px;
+  color: $color-light;
+  @include font($size: 2.5rem, $height: 1.65rem);
+  
+  span {
+    color: $color-dark;
+  }
+}
+.keyboard__container {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+
+  gap: 10px;
+  width: 900px;
+  height: 300px;
+  padding: 10px;
+
+  background: $color-prim-dark;
+  border: 3px solid $color-prim;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 5px rgb(0 0 0 / 50%);
+  user-select: none;
+
+  &::before,
+  &::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    border-radius: 10px;
+    width: calc(100% + 3px);
+    height: calc(100% + 3px);
+    top: -1.5px;
+    left: -1.5px;
+    background: linear-gradient(
+      45deg,
+      #fc0090,
+      #0000ff,
+      #00ff00,
+      #ff0000,
+      #ffff00,
+      #fc0090,
+      #0000ff,
+      #00ff00,
+      #ff0000,
+      #ffff00
+    );
+    background-size: 300%;
+    animation: border 20s linear infinite;
+  }
+
+  &::after {
+    filter: blur(50px);
+  }
+}
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include font($size: 2rem, $height: 1.65rem, $weight: 700);
+  border-radius: 5px;
+  background: $color-prim;
+
+  cursor: pointer;
+  box-shadow: 3px 2px 0px 2px $color-dark-l;
+  transition: color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out /* ,
+    transform 0.1s ease-in-out */;
+  &:hover {
+    color: $color-light;
+    background: $color-add;
+  }
+  &:active {
+    color: $color-light;
+    background: $color-add-dark;
+    transform: scale(1.15);
+  }
+  &.active {
+    color: $color-light;
+    font-size: 2.5rem;
+    background: $color-add-dark;
+    transform: scale(1.15);
+  }
+}
+.key-special {
+  grid-column: span 2;
+  &:active {
+    transform: scale(1.1);
+  }
+  &.active {
+    color: $color-light;
+    font-size: 2.1rem;
+    background: $color-add-dark;
+    transform: scale(1.1);
+  }
+}
+.key-unique {
+  grid-column: span 7;
+  &:active {
+    transform: scale(1.03);
+  }
+  &.active {
+    color: $color-light;
+    background: $color-add-dark;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes border {
+  0%,
+  100% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400%;
+  }
+}

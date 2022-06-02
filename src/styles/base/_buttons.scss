@@ -1,0 +1,32 @@
+.button {
+  @extend %font-add;
+  padding: 13px 42px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.7rem;
+  line-height: 2.21rem;
+  letter-spacing: 0.06em;
+
+  border-radius: 100px;
+  cursor: pointer;
+  @extend %transition;
+  &_bordered {
+    background: $color-light;
+    border: 2px solid $color-prim;
+    color: $color-dark;
+    &:hover {
+      background: $color-prim;
+      border-color: $color-prim;
+    }
+  }
+  &_colored {
+    background: $color-prim;
+    color: $color-dark;
+    border: 2px solid $color-prim;
+    &:hover {
+      background: $color-prim;
+      border-color: $color-prim;
+    }
+  }
+}
